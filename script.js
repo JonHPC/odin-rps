@@ -1,17 +1,23 @@
 //Basic Rock Paper Scissors game against the computer
 
-const buttons = document.querySelectorAll('button');
+let gameOver = false; //initialize game
+
+const buttons = document.querySelectorAll('input');
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         let buttonChoice = button.id.toLowerCase();
         const playerSelection = buttonChoice.charAt(0).toUpperCase() + buttonChoice.slice(1);
         const computerSelection = computerPlay();
-        playRound(playerSelection,computerSelection);
+
+        //checks to see if the game is over, if so, prevent the player from clicking the choice buttons
+        if(gameOver){
+            console.log("Game is over, cannot press buttons")
+        } else{
+            playRound(playerSelection,computerSelection);
+        }
+        
     })
 })
-
-
-
 
 //when this function is called, a random choice will be printed in the console
 function computerPlay(){
@@ -76,13 +82,12 @@ function playRound(playerSelection, computerSelection){
     
 }
 
-
-
-
-
+//initialize player and CPU scores
 let playerScore = 0;
 let compScore = 0;
 
+
+//updates the score text as each round is played
 function updateScore(player, comp){
     playerScore += player;
     compScore += comp;
@@ -92,17 +97,39 @@ function updateScore(player, comp){
     let winOrLose = document.querySelector('#winorlose');
 
     if(playerScore == 5){
-        //player wins
+        //player wins, display win text
         winOrLose.textContent = "You beat the CPU! Great Job!";
-        //alert("You beat the CPU! Great job!");
+
+        //Create a restart button and add it to the #restartBtn div
+        let restartDiv = document.getElementById("restartBtn");
+        let btn = document.createElement("button");
+        btn.className = "results";
+        btn.innerHTML = "Play Again";
+        restartDiv.appendChild(btn);
+
+        //prevents the game from continuing
+        gameOver = true;
     } else if(compScore == 5){
-        //cpu wins
+        //cpu wins, display lose text
         winOrLose.textContent = "Oh no! The CPU beat you! Try harder next time!";
-        //alert("Oh no! the CPU beat you! Try harder next time!");
+        let restartDiv = document.getElementById("restartBtn");
+        let btn = document.createElement("button");
+        btn.className = "results";
+        btn.innerHTML = "Play Again";
+        restartDiv.appendChild(btn);
+        gameOver = true;
     } else {
         winOrLose.textContent = "";
     }
 }
+
+
+//when the Restart Button is pressed, reload the page
+const restartButton = document.querySelector("#restartBtn");
+restartButton.addEventListener('click', () =>{
+    //reloads the page
+    window.location.reload();
+})
 
 
 

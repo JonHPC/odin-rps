@@ -7,19 +7,34 @@
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
-        <h1>Rock Paper Scissors</h1>
+        <div class="header">
+            <h1>Rock Paper Scissors</h1>
+        </div>
+       
+        <div class="playerButtons">
+            <div class="buttons" :hover :active>
+                <input type="image" src="images/Rock_L.png" id="rock">
+            </div>
+            <div class="buttons" :hover :active>
+                <input type="image" src="images/Paper_L.png" id="paper">
+            </div>
+            <div class="buttons" :hover :active>
+                <input type="image" src="images/Scissors_L.png" id="scissors">
+            </div>
+        </div>
         
-        
-        <button id="rock">ROCK</button>
-        <button id="paper">PAPER</button>
-        <button id="scissors">SCISSORS</button>
 
         <div class="results">
-            <p id="playerSelection"></p>
-            <p id="computerSelection"></p>
-            <p id="result"></p>
-            <h4 id="currentScore"></h4>
+            <p id="playerSelection">__________</p>
+            <p id="computerSelection">__________</p>
+            <p id="result">__________</p>
+            <h4 id="currentScore">Current Score: Player - 0 || CPU - 0</h4>
             <h2 id="winorlose"></h2>
+            <div id="restartBtn"></div>
+        </div>
+
+        <div class="footer">
+            <p>© Jonathan Chen 2022</p>
         </div>
 
     </body>
